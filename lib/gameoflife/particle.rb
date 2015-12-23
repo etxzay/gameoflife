@@ -13,4 +13,12 @@ class Particle
     @alive
   end
 
+  def draw
+    if @alive
+      print "X"
+    else
+      print "."
+    end
+  end
+
 end

@@ -12,11 +12,11 @@ describe Particle do
 
   it "print dot when dead" do
     dead = Particle.new(2, 3, false)
-    expect(dead.print).to output(".").to_stdout
+    expect{ dead.draw }.to output(".").to_stdout
   end
 
   it "print X when alive" do
-    expect(particle.print).to output("X").to_stdout
+    expect{ particle.draw }.to output("X").to_stdout
   end
   
 end
