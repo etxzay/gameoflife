@@ -10,7 +10,7 @@ class Particle
   end
 
   def alive?
-    
+    @alive
   end
 
 end
