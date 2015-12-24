@@ -7,28 +7,35 @@ class Universe
   def initialize(width, height)
     @width = width
     @height = height
-#    @checklist = Array.new
+    @checklist = Array.new
     clear
   end
 
   def neighbours(central)
     @nbrs = Array.new
-    @nbrs.push(@particles[central.y-1][central.x])
-    @nbrs.push(@particles[central.y-1][central.x+1])
-    @nbrs.push(@particles[central.y][central.x+1])
-    @nbrs.push(@particles[central.y+1][central.x+1])
-    @nbrs.push(@particles[central.y+1][central.x])
-    @nbrs.push(@particles[central.y+1][central.x-1])
-    @nbrs.push(@particles[central.y][central.x-1])
-    @nbrs.push(@particles[central.y-1][central.x-1])
+    @nbrs.push(get(central.x, central.y-1))
+    @nbrs.push(get(central.x+1, central.y-1))
+    @nbrs.push(get(central.x+1, central.y))
+    @nbrs.push(get(central.x+1, central.y+1))
+    @nbrs.push(get(central.x, central.y+1))
+    @nbrs.push(get(central.x-1, central.y+1))
+    @nbrs.push(get(central.x-1, central.y))
+    @nbrs.push(get(central.x-1, central.y-1))
   end 
 
   def add(particle)
     @particles[particle.y][particle.x] = particle
+
+    if particle.alive?
+      @checklist.push(particle)
+      @checklist = @checklist | neighbours(particle)
+    end
   end
 
   def get(x,y)
-    @particles[y][x]
+    inborderX = bound(x, @width)
+    inborderY = bound(y, @height)
+    @particles[inborderY][inborderX]
   end
 
   def clear
@@ -45,7 +52,7 @@ class Universe
         if current == nil
           current = Particle.new(x, y, false)
         else
-          current.alive = false
+          current.alive(false)
         end
 
         add(current)
@@ -57,6 +64,52 @@ class Universe
 
   def generate
 
+    oldlist = @checklist
+    @checklist = []
+    oldlist.each { |spark|
+      aliveNeighbours = countAliveNeighbours(spark)
+
+      if spark.alive?
+        if aliveNeighbours != 2 && aliveNeighbours != 3
+          spark.alive(false)
+        else
+          @checklist.push(spark)
+          @checklist = @checklist | neighbours(spark)
+        end
+      else
+        if aliveNeighbours == 3
+          spark.alive(true)
+          @checklist.push(spark)
+          @checklist = @checklist | neighbours(spark)
+        end
+      end
+    }
+
   end
+
+  private
+
+    def countAliveNeighbours(particle)
+      nbrsAlive = 0
+      nbrs = neighbours(particle)
+      nbrs.each { |neighbour|
+        if neighbour.alive?
+          nbrsAlive += 1
+        end 
+      }
+      nbrsAlive
+    end
+
+    def bound(value, limit)
+      if value >= limit
+        value = value - limit
+        value = bound(value, limit)
+      end
+      if value < 0
+        value = limit + value
+        value = bound(value, limit)
+      end
+      value
+    end
 
 end
