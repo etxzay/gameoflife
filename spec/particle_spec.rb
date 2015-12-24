@@ -19,4 +19,12 @@ describe Particle do
     expect(particle).to eq(Particle.new(2, 4, true))
   end
 
+  it "to_s representation returns 'X' if alive" do
+    expect(Particle.new(0,0,true).to_s).to eq 'X'
+  end
+
+  it "to_s representation returns 'O' if dead" do
+    expect(Particle.new(0,0,false).to_s).to eq 'O'
+  end
+
 end

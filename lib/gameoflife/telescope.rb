@@ -10,11 +10,7 @@ class Telescope
   end
 
   def draw(particle)
-    if particle.alive?
-      print "X"
-    else
-      print "O"
-    end
+    print particle
   end
 
 end

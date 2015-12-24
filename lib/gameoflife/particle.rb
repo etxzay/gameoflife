@@ -40,4 +40,12 @@ class Particle
 
   end
 
+  def to_s
+    if @alive
+      return 'X'
+    else
+      return 'O'
+    end
+  end
+
 end
