@@ -20,9 +20,4 @@ describe Universe do
     expect(universe.get(2, 2).alive?).to eq false
   end
 
-  it 'draw all containing particles' do
-    universe.add(particle)
-    expect{ universe.draw }.to output("\n....\n....\n..X.\n....").to_stdout
-  end
-
 end

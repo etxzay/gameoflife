@@ -2,6 +2,8 @@ require "gameoflife/particle"
 
 class Universe
 
+  attr_reader :particles
+
   def initialize(width, height)
     @width = width
     @height = height
@@ -31,17 +33,6 @@ class Universe
 
   def generate
 
-  end
-
-  def draw
-    @particles.each { |row|
-      print "\n"
-      row.each { |particle|
-        if particle != nil
-          particle.draw
-        end
-      }
-    }
   end
 
 end
