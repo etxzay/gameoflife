@@ -1,7 +1,6 @@
 class Particle
 
   attr_accessor :x, :y
-  attr_writer :alive
 
   def initialize(x, y, alive)
     @x = x
@@ -11,6 +10,10 @@ class Particle
 
   def alive?
     @alive
+  end
+
+  def alive(value)
+    @alive = value
   end
 
   def draw
