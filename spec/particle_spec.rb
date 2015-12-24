@@ -15,4 +15,8 @@ describe Particle do
     expect(dead.alive?).to eq false
   end
 
+  it "two different objects with the same values should be ==" do
+    expect(particle).to eq(Particle.new(2, 4, true))
+  end
+
 end
