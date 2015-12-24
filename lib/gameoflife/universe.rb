@@ -7,11 +7,20 @@ class Universe
   def initialize(width, height)
     @width = width
     @height = height
+#    @checklist = Array.new
     clear
   end
 
-  def neighbours(particle)
-    
+  def neighbours(central)
+    @nbrs = Array.new
+    @nbrs.push(@particles[central.y-1][central.x])
+    @nbrs.push(@particles[central.y-1][central.x+1])
+    @nbrs.push(@particles[central.y][central.x+1])
+    @nbrs.push(@particles[central.y+1][central.x+1])
+    @nbrs.push(@particles[central.y+1][central.x])
+    @nbrs.push(@particles[central.y+1][central.x-1])
+    @nbrs.push(@particles[central.y][central.x-1])
+    @nbrs.push(@particles[central.y-1][central.x-1])
   end 
 
   def add(particle)
