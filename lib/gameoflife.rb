@@ -5,6 +5,8 @@ require "gameoflife/csvparser"
 
 module Gameoflife
 
+  attr_accessor :generation
+
   def init(filename)
 
     parser = CSVParser.new(filename)
@@ -29,9 +31,6 @@ module Gameoflife
   end
 
   def play
-  end
-
-  def start
   end
 
 end
