@@ -21,9 +21,13 @@ module Gameoflife
       @universe.animate(pair[0].to_i, pair[1].to_i)
     }
 
+    @generation = 1
+    @history = []
   end
 
   def turn
+    @generation += 1
+    @history.push(@universe.particles)
     @universe.generate
   end
 
@@ -31,6 +35,7 @@ module Gameoflife
   end
 
   def draw
+    @telescope.clear
     @telescope.show(@universe.particles)
   end
 
