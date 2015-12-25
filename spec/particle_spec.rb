@@ -23,8 +23,8 @@ describe Particle do
     expect(Particle.new(0,0,true).to_s).to eq 'X'
   end
 
-  it "to_s representation returns 'O' if dead" do
-    expect(Particle.new(0,0,false).to_s).to eq 'O'
+  it "to_s representation returns '_' if dead" do
+    expect(Particle.new(0,0,false).to_s).to eq '_'
   end
 
 end

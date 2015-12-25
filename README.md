@@ -14,7 +14,7 @@ Build:
 
 and install:
 
-    $ gem install ./gameoflife-0.1.2
+    $ gem install ./gameoflife-0.1.3.gem
 
 ## Usage
 
@@ -22,7 +22,7 @@ Create simple csv file which contains coordinates. First row consider to contain
 Application produces console output for the each step. Pause between steps is about 2 seconds.
 
 'X' - stands for live cell
-'O' - stands for dead cell
+'_' - stands for dead cell
 
 `irb> require 'gameoflife'`
 

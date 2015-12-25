@@ -44,7 +44,7 @@ class Particle
     if @alive
       return 'X'
     else
-      return 'O'
+      return '_'
     end
   end
 
