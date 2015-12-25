@@ -76,21 +76,33 @@ class Universe
 
     oldlist = @checklist
     @checklist = []
+    @dying = []
+    @resurgent = []
+
     oldlist.each { |spark|
+
       aliveNeighbours = countAliveNeighbours(spark)
 
       if spark.alive?
         if aliveNeighbours != 2 && aliveNeighbours != 3
-          spark.alive(false)
-        else
+          @dying.push(spark)
           mark(spark)
         end
       else
         if aliveNeighbours == 3
-          spark.alive(true)
+          @resurgent.push(spark)
           mark(spark)
         end
       end
+
+    }
+
+    @dying.each { |spark|
+      spark.alive(false)
+    }
+
+    @resurgent.each { |spark|
+      spark.alive(true)
     }
 
   end

@@ -94,6 +94,16 @@ describe Universe do
       expect(universe.get(2, 1).alive?).to eq false
     end
 
+    it 'new state calculation should be separate from switching to new state (planer test)' do
+      universe.animate(1, 0)
+      universe.animate(2, 1)
+      universe.animate(0, 2)
+      universe.animate(1, 2)
+      universe.animate(2, 2)
+      universe.generate
+      expect(universe.get(0,1).alive?).to eq true
+    end
+
   end
 
   it '#strength counts alive particles' do
