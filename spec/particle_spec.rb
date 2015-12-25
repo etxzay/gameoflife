@@ -4,7 +4,7 @@ describe Particle do
 
   let (:particle) { Particle.new(2, 4, true) }
 
-  it "store coordinats" do
+  it "store coordinates" do
     expect(particle.x).to eq 2
     expect(particle.y).to eq 4
   end
