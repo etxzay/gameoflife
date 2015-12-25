@@ -36,6 +36,18 @@ class Universe
     @particles[inborderY][inborderX]
   end
 
+  def strength
+    result = 0
+    if !@checklist.empty?
+      @checklist.each { |element|
+        if element.alive?
+          result += 1
+        end
+      }
+    end
+    result
+  end
+
   def clear
   
     if @particles == nil

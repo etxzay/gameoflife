@@ -12,12 +12,10 @@ describe Universe do
   describe "#get" do
 
     it 'with correct coordinates' do
-      universe = Universe.new(4, 4)
       expect(universe.get(2, 2)).to eq Particle.new(2, 2, false)
     end
 
     it 'with out of bound coordinates' do
-      universe = Universe.new(4, 4)
       expect(universe.get(4, -1)).to eq Particle.new(0, 3, false)
       expect(universe.get(4, 4)).to eq Particle.new(0, 0, false)
       expect(universe.get(-1, 4)).to eq Particle.new(3, 0, false)
@@ -25,7 +23,6 @@ describe Universe do
     end
 
     it 'with way out of bound coordinates' do
-      universe = Universe.new(4, 4)
       expect(universe.get(14, -11)).to eq Particle.new(2, 1, false)
       expect(universe.get(24, 34)).to eq Particle.new(0, 2, false)
       expect(universe.get(-41, 54)).to eq Particle.new(3, 2, false)
@@ -35,7 +32,6 @@ describe Universe do
   end
 
   it 'set particle alive' do
-    universe = Universe.new(4, 4)
     universe.animate(2, 2)
     expect(universe.get(2, 2)).to eq particle
   end
@@ -83,7 +79,6 @@ describe Universe do
   describe "#generate" do
 
     it 'creates new generation of particles' do
-      universe = Universe.new(4, 4)
       universe.animate(1, 1)
       universe.animate(2, 1)
       universe.animate(1, 2)
@@ -92,7 +87,6 @@ describe Universe do
     end
 
     it 'kill some old particles' do
-      universe = Universe.new(4, 4)
       universe.animate(2, 1)
       universe.animate(1, 2)
       universe.generate
@@ -100,6 +94,12 @@ describe Universe do
       expect(universe.get(2, 1).alive?).to eq false
     end
 
+  end
+
+  it '#strength counts alive particles' do
+    expect(universe.strength).to eq 0
+    universe.animate(1, 1)
+    expect(universe.strength).to eq 1
   end
 
 end
