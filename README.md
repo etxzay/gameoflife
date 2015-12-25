@@ -14,16 +14,18 @@ Build:
 
 and install:
 
-    $ gem install gameoflife
+    $ gem install ./gameoflife-0.1.2
 
 ## Usage
 
-Create CSV text file which contains coordinates. First row consider to contain field size (width, height). It produces console output for the each step. Pause between steps is about 2 seconds.
+Create imple csv file which contains coordinates. First row consider to contain field size (width, height). Each row after first consider to contain coordinates (x,y) of one live cell. 
+Application produces console output for the each step. Pause between steps is about 2 seconds.
 
-irb> require 'gameoflife'
-irb> include Gameoflife
-irb> init("filename")
-irb> play
+
+`irb> require 'gameoflife'`
+`irb> include Gameoflife`
+`irb> init("filename")`
+`irb> play`
 
 'X' - stands for live cell
 'O' - stands for dead cell
