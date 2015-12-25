@@ -13,4 +13,8 @@ class Telescope
     print particle
   end
 
+  def clear
+    system "clear" or system "cls"
+  end
+
 end
