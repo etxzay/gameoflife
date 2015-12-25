@@ -7,7 +7,8 @@ describe Telescope do
   let(:telescope) { Telescope.new }
 
   it "shows particles to console" do
-    universe.add(alive)
+    #TODO remove Universe test dependancy
+    universe.animate(2, 2)
     expect{ telescope.show(universe.particles) }.to output("\nOOOO\nOOOO\nOOXO\nOOOO").to_stdout
   end
 

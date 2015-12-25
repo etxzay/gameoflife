@@ -23,16 +23,14 @@ class Universe
     @nbrs.push(get(central.x-1, central.y-1))
   end 
 
-  def add(particle)
-    @particles[particle.y][particle.x] = particle
+  def animate(x, y)
+    particle = get(x, y)
+    particle.alive(true)
 
-    if particle.alive?
-      @checklist.push(particle)
-      @checklist = @checklist | neighbours(particle)
-    end
+    mark(particle)
   end
 
-  def get(x,y)
+  def get(x, y)
     inborderX = bound(x, @width)
     inborderY = bound(y, @height)
     @particles[inborderY][inborderX]
@@ -73,14 +71,12 @@ class Universe
         if aliveNeighbours != 2 && aliveNeighbours != 3
           spark.alive(false)
         else
-          @checklist.push(spark)
-          @checklist = @checklist | neighbours(spark)
+          mark(spark)
         end
       else
         if aliveNeighbours == 3
           spark.alive(true)
-          @checklist.push(spark)
-          @checklist = @checklist | neighbours(spark)
+          mark(spark)
         end
       end
     }
@@ -110,6 +106,19 @@ class Universe
         value = bound(value, limit)
       end
       value
+    end
+
+    def add(particle)
+      @particles[particle.y][particle.x] = particle
+
+      if particle.alive?
+        mark(particle)
+      end
+    end
+
+    def mark(particle)
+      @checklist.push(particle)
+      @checklist = @checklist | neighbours(particle)
     end
 
 end

@@ -18,10 +18,6 @@ describe Universe do
 
     it 'with out of bound coordinates' do
       universe = Universe.new(4, 4)
-#      expect(universe.get(4, 0)).to eq Particle.new(0, 0, false)
-#      expect(universe.get(0, 4)).to eq Particle.new(0, 0, false)
-#      expect(universe.get(0, -1)).to eq Particle.new(0, 3, false)
-#      expect(universe.get(-1, 0)).to eq Particle.new(3, 0, false)
       expect(universe.get(4, -1)).to eq Particle.new(0, 3, false)
       expect(universe.get(4, 4)).to eq Particle.new(0, 0, false)
       expect(universe.get(-1, 4)).to eq Particle.new(3, 0, false)
@@ -38,14 +34,14 @@ describe Universe do
 
   end
 
-  it 'add a particle to universe' do
+  it 'set particle alive' do
     universe = Universe.new(4, 4)
-    universe.add(particle)
+    universe.animate(2, 2)
     expect(universe.get(2, 2)).to eq particle
   end
 
-  it 'clear should empty particles array' do
-    universe.add(particle)
+  it '#clear should set all particles dead' do
+    universe.animate(2, 2)
     universe.clear
     expect(universe.get(2, 2).alive?).to eq false
   end
@@ -88,17 +84,17 @@ describe Universe do
 
     it 'creates new generation of particles' do
       universe = Universe.new(4, 4)
-      universe.add(Particle.new(1, 1, true))
-      universe.add(Particle.new(2, 1, true))
-      universe.add(Particle.new(1, 2, true))
+      universe.animate(1, 1)
+      universe.animate(2, 1)
+      universe.animate(1, 2)
       universe.generate
       expect(universe.get(2,2).alive?).to eq true
     end
 
     it 'kill some old particles' do
       universe = Universe.new(4, 4)
-      universe.add(Particle.new(2, 1, true))
-      universe.add(Particle.new(1, 2, true))
+      universe.animate(2, 1)
+      universe.animate(1, 2)
       universe.generate
       expect(universe.get(1, 2).alive?).to eq false
       expect(universe.get(2, 1).alive?).to eq false
