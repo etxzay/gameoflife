@@ -12,7 +12,7 @@ module Gameoflife
     parser = CSVParser.new(filename)
     data = parser.parse
 
-    coordinates = data.pop
+    coordinates = data.shift
 
     @universe = Universe.new(coordinates[0].to_i, coordinates[1].to_i)
     data.each { |pair|
