@@ -1,6 +1,5 @@
 # Gameoflife
 
-{<img src="https://codeclimate.com/github/etxzay/gameoflife.png" />}[https://codeclimate.com/github/etxzay/gameoflife]
 <a href="https://codeclimate.com/github/etxzay/gameoflife"><img src="https://codeclimate.com/github/etxzay/gameoflife/badges/gpa.svg" /></a>
 
 Conway's Game of Life
@@ -8,10 +7,6 @@ Conway's Game of Life
 wiki links: <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">en</a> <a href="https://ru.wikipedia.org/wiki/%D0%96%D0%B8%D0%B7%D0%BD%D1%8C_(%D0%B8%D0%B3%D1%80%D0%B0)">ru</a>
 
 ## Installation
-
-```ruby
-gem 'gameoflife'
-```
 
 Build:
 
