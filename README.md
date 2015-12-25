@@ -1,34 +1,37 @@
 # Gameoflife
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/gameoflife`. To experiment with that code, run `bin/console` for an interactive prompt.
+{<img src="https://codeclimate.com/github/etxzay/gameoflife.png" />}[https://codeclimate.com/github/etxzay/gameoflife]
+<a href="https://codeclimate.com/github/etxzay/gameoflife"><img src="https://codeclimate.com/github/etxzay/gameoflife/badges/gpa.svg" /></a>
 
-TODO: Delete this and the text above, and describe your gem
+Conway's Game of Life
+
+wiki links: <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">en</a> <a href="https://ru.wikipedia.org/wiki/%D0%96%D0%B8%D0%B7%D0%BD%D1%8C_(%D0%B8%D0%B3%D1%80%D0%B0)">ru</a>
 
 ## Installation
-
-Add this line to your application's Gemfile:
 
 ```ruby
 gem 'gameoflife'
 ```
 
-And then execute:
+Build:
 
-    $ bundle
+    $ gem build gameoflife.gemspec
 
-Or install it yourself as:
+and install:
 
     $ gem install gameoflife
 
 ## Usage
 
-TODO: Write usage instructions here
+Create CSV text file which contains coordinates. First row consider to contain field size (width, height). It produces console output for the each step. Pause between steps is about 2 seconds.
 
-## Development
+irb> require 'gameoflife'
+irb> include Gameoflife
+irb> init("filename")
+irb> play
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment. 
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+'X' - stands for live cell
+'O' - stands for dead cell
 
 ## Contributing
 
