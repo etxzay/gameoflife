@@ -27,11 +27,22 @@ module Gameoflife
 
   def turn
     @generation += 1
-    @history.push(@universe.particles)
+    @history.push(Marshal.load(Marshal.dump(@universe.particles.dup)))
     @universe.generate
   end
 
   def end?
+    finish = false
+
+    if @universe.strength == 0
+      finish = true
+    else
+      if @history.include?(@universe.particles)
+        finish = true
+      end
+    end
+
+    finish
   end
 
   def draw

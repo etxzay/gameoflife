@@ -3,12 +3,13 @@ require 'spec_helper'
 describe Gameoflife do
 
   let(:dummy_class) { Class.new { include Gameoflife }.new }
-  let(:coordinates) { [["4","5"],["2","1"],["1","2"]] }
+  let(:coordinates) { [["4","5"]] }
   let(:universe) { dummy_class.instance_variable_get(:@universe) }
 
   before(:each) do
     allow_any_instance_of(CSVParser).to receive(:parse).and_return(coordinates)
     allow_any_instance_of(Telescope).to receive(:show)
+    allow_any_instance_of(Telescope).to receive(:clear)
     dummy_class.init("test.txt")
   end
 
@@ -48,6 +49,12 @@ describe Gameoflife do
       expect(dummy_class.instance_variable_get(:@history).size).to eq(size + 1)
     end
 
+    it 'history contains objects that different from the current state' do
+      dummy_class.turn
+      universe.animate(1, 1)
+      expect(dummy_class.instance_variable_get(:@history)[0]).not_to eq universe.particles
+    end
+
   end
 
   describe '#draw' do
@@ -64,10 +71,31 @@ describe Gameoflife do
 
   end
 
-  it '#end? checks end of game condition' do
+  describe '#end?' do
+
+    it 'game ends when universe is empty' do
+      expect(dummy_class.end?).to eq true
+    end
+
+    it 'game ends when universe not empty and history contains current state' do
+      universe.animate(1, 1)
+      universe.animate(1, 2)
+      universe.animate(2, 1)
+      expect(dummy_class.end?).to eq false
+      dummy_class.turn
+      expect(dummy_class.end?).to eq false
+      dummy_class.turn
+      expect(dummy_class.end?).to eq true
+    end
+
   end
 
   it '#play makes turns untill end of game' do
+#    universe.animate(1, 1)
+#    universe.animate(1, 2)
+#    universe.animate(2, 1)
+#    dummy_class.play
+#    expect(dummy_class.generation).to eq 3
   end
 
 end
