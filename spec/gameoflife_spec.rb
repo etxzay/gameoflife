@@ -7,6 +7,7 @@ describe Gameoflife do
 
   before do
     allow_any_instance_of(CSVParser).to receive(:parse).and_return(coordinates)
+    allow_any_instance_of(Telescope).to receive(:show)
   end
 
   it 'has a version number' do
@@ -32,6 +33,9 @@ describe Gameoflife do
   end
 
   it 'displays state' do
+    dummy_class.init("test.txt")
+    expect(dummy_class.instance_variable_get(:@telescope)).to receive(:show)
+    dummy_class.draw
   end
 
   it 'checks end of game condition' do

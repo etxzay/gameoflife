@@ -14,6 +14,8 @@ module Gameoflife
 
     coordinates = data.shift
 
+    @telescope = Telescope.new
+
     @universe = Universe.new(coordinates[0].to_i, coordinates[1].to_i)
     data.each { |pair|
       @universe.animate(pair[0].to_i, pair[1].to_i)
@@ -28,6 +30,7 @@ module Gameoflife
   end
 
   def draw
+    @telescope.show(@universe.particles)
   end
 
   def play
