@@ -18,7 +18,7 @@ and install:
 
 ## Usage
 
-Create simple csv file which contains coordinates. First row consider to contain field size (width, height). Each row after first consider to contain coordinates (x,y) of one live cell. 
+Create simple csv file which contains coordinates. First row consider to contain field size (width, height). Each row after first consider to contain coordinates (x,y) of one live cell. Coordinates begins from 0 value, for example top left corner cell has x = 0, y = 0. 
 Application produces console output for the each step. Pause between steps is about 2 seconds.
 
 'X' - stands for live cell
