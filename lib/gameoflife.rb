@@ -24,6 +24,7 @@ module Gameoflife
   end
 
   def turn
+    @universe.generate
   end
 
   def end?
