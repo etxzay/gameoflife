@@ -13,14 +13,14 @@ class Universe
 
   def neighbours(central)
     @nbrs = Array.new
-    @nbrs.push(get(central.x, central.y-1))
-    @nbrs.push(get(central.x+1, central.y-1))
-    @nbrs.push(get(central.x+1, central.y))
-    @nbrs.push(get(central.x+1, central.y+1))
-    @nbrs.push(get(central.x, central.y+1))
-    @nbrs.push(get(central.x-1, central.y+1))
-    @nbrs.push(get(central.x-1, central.y))
-    @nbrs.push(get(central.x-1, central.y-1))
+    (-1..1).to_a.each { |x|
+      (-1..1).to_a.each { |y|
+        if !(x == 0 && y == 0)
+          @nbrs.push(get(central.x + x, central.y + y))
+        end
+      }
+    }
+    @nbrs
   end 
 
   def animate(x, y)
