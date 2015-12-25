@@ -51,6 +51,14 @@ module Gameoflife
   end
 
   def play
+    draw
+    sleep(2)
+    while !end? do
+      turn
+      draw
+      sleep(2)
+    end
+    @generation
   end
 
 end

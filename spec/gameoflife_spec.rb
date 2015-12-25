@@ -90,12 +90,15 @@ describe Gameoflife do
 
   end
 
-  it '#play makes turns untill end of game' do
-#    universe.animate(1, 1)
-#    universe.animate(1, 2)
-#    universe.animate(2, 1)
-#    dummy_class.play
-#    expect(dummy_class.generation).to eq 3
+  describe '#play' do
+
+    it 'makes turns untill end of game' do
+      universe.animate(1, 1)
+      universe.animate(1, 2)
+      universe.animate(2, 1)
+      expect(dummy_class.play).to eq 3
+    end
+
   end
 
 end
