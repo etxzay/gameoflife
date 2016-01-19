@@ -2,14 +2,18 @@ require "gameoflife/version"
 require "gameoflife/universe"
 require "gameoflife/telescope"
 require "gameoflife/csvparser"
+require "gameoflife/commonprovider"
 
 module Gameoflife
+
+  include CommonProvider
 
   attr_accessor :generation
 
   def init(filename)
 
-    parser = CSVParser.new(filename)
+    parser = container[:parser] 
+    parser.filename = filename
     data = parser.parse
 
     coordinates = data.shift
