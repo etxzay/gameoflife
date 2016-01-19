@@ -3,13 +3,17 @@ require "gameoflife/universe"
 require "gameoflife/telescope"
 require "gameoflife/csvparser"
 require "gameoflife/commonprovider"
+require "contracts"
 
 module Gameoflife
 
   include CommonProvider
+  include Contracts::Core
+  include Contracts::Builtin
 
   attr_accessor :generation
 
+  Contract String => ArrayOf[Any] 
   def init(filename)
 
     parser = container[:parser] 
